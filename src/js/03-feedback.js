@@ -1,3 +1,4 @@
+import { load }  from './localstorage';
 import { throttle } from 'lodash';
 
 const feedbackFormEl = document.querySelector('.feedback-form');
@@ -15,15 +16,6 @@ feedbackFormEl.addEventListener('submit', event => {
     feedbackFormEl.reset();
     localStorage.removeItem("feedback-form-state");    
 });
-
-const load = key => {
-  try {
-    const serializedState = localStorage.getItem(key);
-    return serializedState === null ? undefined : JSON.parse(serializedState);
-  } catch (error) {
-    console.error('Get state error: ', error.message);
-  }
-};
 
 const usersData = load("feedback-form-state");
 if (usersData) {
